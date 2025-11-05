@@ -1,13 +1,5 @@
 package com.skhu.tips;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 /*
  * ***************************
  *  파일명: Main
@@ -20,12 +12,19 @@ import javax.swing.JPanel;
 import com.skhu.tips.controller.PanelController;
 import com.skhu.tips.view.panel.MainLeftPanel;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+
 
 
 public class Main {
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(() -> {
-			JFrame frame = new JFrame("Campus Map Tipsas");
+			JFrame frame = new JFrame("Campus Map Tips");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setLayout(new BorderLayout());
 
