@@ -1,0 +1,50 @@
+# IDE Files (STS is based on Eclipse)
+### Eclipse/STS ###
+.metadata
+.classpath
+.project
+.settings/
+tmp/
+bin/
+/target/
+.sts4-cache/
+.springBeans
+.loadpath
+.recommenders
+
+# Java Generated Files
+### Java ###
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Package Files (can be uncommented if you need to share)
+# *.jar
+# *.war
+# *.ear
+# *.zip
+# *.tar.gz
+# *.rar
+
+# JVM crash logs
+hs_err_pid*
+
+# Maven specific (If using Maven, often included in 'target')
+# target/ 
+# If you use the target folder for something else, exclude specific things
+# release.properties
+
+# Local configuration files (e.g., database connection info)
+# 민감한 정보가 담긴 설정 파일은 무시하는 것이 안전합니다.
+# 필요하다면 파일을 분리하여 민감한 정보만 제외시키고, 설정 파일의 기본 구조는 공유합니다.
+# 예시: application-local.properties
+# *.properties
+# *.yml
+# *.xml
+
+# OS generated files
+### OS ###
+.DS_Store
+Thumbs.db

@@ -1,16 +1,17 @@
 package com.skhu.tips.model.service;
 
-import com.skhu.tips.model.dto.Building;
-import com.skhu.tips.model.dto.Facility;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.skhu.tips.model.dto.Building;
+import com.skhu.tips.model.dto.Facility;
 
 /*
  * ***************************
  *  파일명: DataService
  *  작성자: 김주환
  *  작성일: 2025-11-04
- *  내용: 교내 건물 및 시설 데이터 관리 클래스 
+ *  내용: 교내 건물 및 시설 데이터 관리 클래스
  * ***************************
  */
 public class DataService {
@@ -71,8 +72,8 @@ public class DataService {
         b3.addFacility(f6);
 
         buildings.add(b3);
-        
-        
+
+
         // =====================
         // 05. 나눔관(학생회관)
         // =====================
@@ -82,7 +83,7 @@ public class DataService {
         f6.addTip("~~");
         b5.addFacility(f7);
 
-        buildings.add(b5);
+        buildings.add(b5); /*
         // =====================
         // 06. 이천환기념관(정보과학관)
         // =====================
@@ -91,8 +92,8 @@ public class DataService {
         f6.addTip("~");
         f6.addTip("~~");
         b5.addFacility(f7);
-        
-        
+
+
         // =====================
         // 07. 새천년관(인문사회관)
         // =====================
@@ -101,7 +102,7 @@ public class DataService {
         f6.addTip("~");
         f6.addTip("~~");
         b5.addFacility(f7);
-        
+
         // =====================
         // 08. 중앙 도서관
         // =====================
@@ -143,14 +144,14 @@ public class DataService {
         f6.addTip("~~");
         b5.addFacility(f7);
         // =====================
-        // 13. 행복기숙사 
+        // 13. 행복기숙사
         // =====================
         Building b13 = new Building(13, "행복기숙사", "간단한 설명");
         Facility f7 = new Facility("시설명", "층", "간단한 설명");
         f6.addTip("~");
         f6.addTip("~~");
-        b5.addFacility(f7);
-        
+        b5.addFacility(f7); */
+
     }
 
     public List<Building> getBuildings() {
@@ -159,16 +160,18 @@ public class DataService {
 
     public Building findBuildingByName(String name) {
         for (Building b : buildings) {
-            if (b.getName().equals(name))
-                return b;
+            if (b.getName().equals(name)) {
+				return b;
+			}
         }
         return null;
     }
 
     public Building findBuildingById(int id) {
         for (Building b : buildings) {
-            if (b.getId() == id)
-                return b;
+            if (b.getId() == id) {
+				return b;
+			}
         }
         return null;
     }
