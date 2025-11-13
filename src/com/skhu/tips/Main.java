@@ -23,24 +23,20 @@ public class Main {
 		// Swing UI는 항상 Event Dispatch Thread (EDT)에서 실행
 		SwingUtilities.invokeLater(() -> {
 
-			// 1. DataService 생성 (인터페이스 타입으로 참조)
+			// 1. DataService 생성
 			DataService dataService = new DataServiceImpl();
 
 			// 2. 뷰 생성
 			MainLeftPanel mainLeftPanel = new MainLeftPanel();
 			MapPanel mapPanel = new MapPanel();
 
-            // 3. 컨트롤러 생성 (구현체로 생성 후 인터페이스 타입으로 참조)
-            // (이 시점에는 컨트롤러들이 서로를 모름)
+            // 3. 컨트롤러 생성
             PanelController panelController = new PanelControllerImpl(mainLeftPanel, dataService);
             MapController mapController = new MapControllerImpl(mapPanel, dataService);
 
-            // --- [핵심] 순환 참조 해결을 위한 Setter DI ---
             // 4. 생성된 컨트롤러 구현체끼리 서로의 인터페이스를 주입합니다.
-            // (다운 캐스팅이 필요할 수 있으나, 여기서는 인터페이스의 setter를 호출)
             panelController.setMapController(mapController);
             mapController.setPanelController(panelController);
-            // ------------------------------------------
 
 			// 5. UI 조립 및 화면 출력
 			assembleAndLaunchUI(mainLeftPanel, mapPanel);
@@ -55,6 +51,7 @@ public class Main {
 	 * @brief 프레임에 주요 뷰들을 배치하고 화면에 표시하는 최종 함수입니다.
 	 */
 	private static void assembleAndLaunchUI(JPanel leftView, JPanel rightView) {
+		// 메인 프레임
 		JFrame frame = new JFrame("대학 꿀팁 지도");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1200, 800);
