@@ -1,4 +1,10 @@
 package com.skhu.tips.view.map;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 
 /*
  * ***************************
@@ -9,6 +15,10 @@ package com.skhu.tips.view.map;
  * ***************************
  */
 
-public class MapIconPosition {
+public class MapIconPosition extends JPanel{
+	MapPanel panel;
+	
+
+	
 
 }

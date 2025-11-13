@@ -1,5 +1,13 @@
 package com.skhu.tips.view.map;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 /*
  * ***************************
  *  파일명: MapPanel
@@ -9,6 +17,135 @@ package com.skhu.tips.view.map;
  * ***************************
  */
 
-public class MapPanel {
+public class MapPanel extends JPanel {
+	private ImageIcon icon = new ImageIcon("src/image/testImage.jpg");	//배경
+	private Image img = icon.getImage();
+	
+	
+	private int width = 500, height = 500;	//맵 가로, 세로 길이. 기본값 500x500, 언제든 수정가능
+	private int mapX = 0, mapY = 0;		//이미지의 첫 좌표, 수정가능
+	private int current_x, current_y;	//마우스 클릭 시의 커서 좌표
+	
+	public int change_flag = 1;
+	
+	private static class OverlayIcon{
+		Image image;
+		int x, y, w, h;
+		double dx, dy, dw, dh;
+		String path;
+		
+		OverlayIcon(String path, int x, int y, int w, int h){
+			this.image = new ImageIcon(path).getImage();
+			this.path = path;
+			this.x = x; 
+			this.y = y;
+			this.w = w;
+			this.h = h;
+			this.dx = x;
+			this.dy = y;
+			this.dw = w;
+			this.dh = h;
+		}
+	}
+	
+	
+	private final List<OverlayIcon> overlays = new ArrayList<>(); 
+	
+	public void addOverlay(String path, int x, int y, int w, int h) {
+		overlays.add(new OverlayIcon(path, x, y, w, h));
+		repaint();
+	}
 
+	
+	public void bigOverlayImg() {
+		for (OverlayIcon o : overlays) {
+			o.path = o.path.substring(0, o.path.length() - 4);
+			o.path += "1" + ".png";
+			o.image = new ImageIcon(o.path).getImage();
+	    }
+	}
+	
+	public void smallOverlayImg() {
+		for (OverlayIcon o : overlays) {
+		      o.path = o.path.substring(0, o.path.length() - 5);
+		      o.path += ".png";
+		      o.image = new ImageIcon(o.path).getImage();
+		}
+	}
+	
+	public void printOverlay() {
+		for (OverlayIcon o : overlays) {
+			System.out.println(o.path);
+		}
+	}
+	
+	
+	public void moveOverlay(int x, int y) {
+		for (OverlayIcon o : overlays) {
+	        o.x += x;
+	        o.y += y;
+	    }
+	}
+	
+	public void resizeOverlay(double size) {
+		for (OverlayIcon o : overlays) {
+	        o.dw *= size;
+	        o.dh *= size;
+	        o.w = (int)o.dw;
+	        o.h = (int)o.dh;
+	    }
+	}
+	
+	public void setLocation(int size) {
+		for (OverlayIcon o : overlays) {
+			o.dx = o.dx / this.width * (this.width + size);
+			o.dy = o.dy / this.height * (this.height + size);
+			o.x = (int)o.dx + this.mapX;
+			o.y = (int)o.dy + this.mapY;
+	    }
+		System.out.println("맵좌표 : " + this.mapX + "," + this.mapY);
+	}
+	
+
+	public void setImg(String imagePath) {
+		this.icon = new ImageIcon(imagePath);
+		this.img = icon.getImage();
+		repaint();
+	}
+	
+	public void setXY(int x, int y) {
+		this.mapX = x;
+		this.mapY = y;
+	}
+	
+	public void setCurrentXY(int x, int y) {
+		this.current_x = x;
+		this.current_y = y;
+	}
+	
+	public void setImgSize(int width, int height) {
+		this.width = width;
+		this.height = height;
+		repaint();
+	}
+	
+	public int getImgX() {	return this.mapX; }
+	public int getImgY() { return this.mapY; }
+	public int getCurrent_X() { return this.current_x; }
+	public int getCurrent_Y() { return this.current_y; }
+	public int getImgW() { return this.width; }
+	public int getImgH() { return this.height; }
+	
+	public void paintComponent(Graphics g) {	//지도 그리기
+		super.paintComponent(g);
+		g.drawImage(img, mapX, mapY, width, height, this);	//지도 배경 그리기
+
+		for (OverlayIcon o : overlays) {
+	        g.drawImage(o.image, o.x, o.y, o.w, o.h, this);
+	    }
+	}
+	
+	
+	
+	
 }
