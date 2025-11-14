@@ -10,6 +10,12 @@ import com.skhu.tips.model.entity.Facility;
 public interface PanelController {
 
     /**
+     * @brief 건물 또는 시설 목록 뷰를 전환합니다.
+     */
+    void switchToBuildingView();
+    void switchToFacilityView();
+
+    /**
      * @brief 건물 상세 정보 팝업창을 엽니다.
      */
     void openBuildingDetail(Building building);

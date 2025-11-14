@@ -54,19 +54,28 @@ public class PanelControllerImpl implements PanelController {
             }
         });
 
-        // 3. 탭 변경 리스너 등록
-        mainLeftPanel.getTabbedPane().addChangeListener(e -> {
-            if (mapController != null) {
-                if (mainLeftPanel.getTabbedPane().getSelectedIndex() == 0) {
-                    mapController.switchToBuildingView();
-                } else {
-                    mapController.switchToFacilityView();
-                }
-            }
-        });
+        // 3. 카테고리 버튼 클릭 리스너 등록
+        mainLeftPanel.getBuildingButton().addActionListener(e -> switchToBuildingView());
+        mainLeftPanel.getFacilityButton().addActionListener(e -> switchToFacilityView());
     }
 
-    // --- (이하 PanelController 인터페이스 구현은 동일) ---
+    // --- PanelController 인터페이스 구현 ---
+
+    @Override
+    public void switchToBuildingView() {
+        mainLeftPanel.switchToBuildingView();
+        if (mapController != null) {
+            mapController.switchToBuildingView();
+        }
+    }
+
+    @Override
+    public void switchToFacilityView() {
+        mainLeftPanel.switchToFacilityView();
+        if (mapController != null) {
+            mapController.switchToFacilityView();
+        }
+    }
 
     @Override
     public void openBuildingDetail(Building building) {
