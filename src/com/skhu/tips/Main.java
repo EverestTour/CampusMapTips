@@ -26,13 +26,23 @@ public class Main {
 			// 1. DataService 생성
 			DataService dataService = new DataServiceImpl();
 
+
 			// 2. 뷰 생성
 			MainLeftPanel mainLeftPanel = new MainLeftPanel();
-			MapPanel mapPanel = new MapPanel();
+			// 3. 컨트롤러 생성
+			PanelController panelController = new PanelControllerImpl(mainLeftPanel, dataService);
 
-            // 3. 컨트롤러 생성
-            PanelController panelController = new PanelControllerImpl(mainLeftPanel, dataService);
-            MapController mapController = new MapControllerImpl(mapPanel, dataService);
+			// 2. 뷰 생성
+			MapPanel mapPanel = new MapPanel();
+			// 3. 컨트롤러 생성
+			MapController mapController = new MapControllerImpl(mapPanel, dataService);
+
+
+
+
+
+
+
 
             // 4. 생성된 컨트롤러 구현체끼리 서로의 인터페이스를 주입합니다.
             panelController.setMapController(mapController);
